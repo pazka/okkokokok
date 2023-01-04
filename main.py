@@ -33,3 +33,20 @@ def write_new_file():
 
     return Response(status=200)
 
+
+@app.route('/file', methods=["GET"])
+def read_file():
+    request_params = request.args
+    name = request_params.get("name")
+
+    if not name:
+        return Response("Can't find without a name parameter", status=400, mimetype='application/text')
+
+    content = None
+    try:
+        with open(name, "r") as file:
+            content = file.readlines()
+    except Exception as e:
+        return Response("An error occured\n"+str(e), status=500, mimetype='application/text')
+
+    return content

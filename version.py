@@ -5,7 +5,7 @@ import sys
 __major = 0
 __minor = 0
 __patch = 0
-__build = 38
+__build = 42
 
 """
     This file contains the version of the project (above) and is easily updatable manually of programmatically. 
