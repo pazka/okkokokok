@@ -4,20 +4,11 @@ from Room import Room
 
 version.increment_version(3)
 
-gens = []
+from flask import Flask
 
-for i in range(5):
-    gens += [Worker("worker"+str(i), 50*i, "dev"+str(i))]
+app = Flask(__name__)
 
-room1 = Room(max_places=2)
-room2 = Room()
 
-room1.add_worker(gens[0])
-room1.add_worker(gens[1])
-room1.add_worker(gens[2])
-
-room2.add_worker(gens[2])
-room2.add_worker(gens[2])
-room2.add_worker(gens[3])
-room2.add_worker(gens[4])
-
+@app.route("/",methods=["POST"])
+def hello_world():
+    return f"<p>Hello, World with a post!</p><h1>I'm at version : {version.get_version()}</h1>"
